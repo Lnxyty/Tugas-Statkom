@@ -33,6 +33,12 @@ public class A {
 
         return arr;
     }
+
+    /**
+     * 
+     * @param arr
+     * @return
+     */
     public static double operasiMean (double[]arr){
         double jumlahAkumulatif = 0;
         for (int q = 0 ; q < arr.length ; q++ ){
@@ -42,6 +48,11 @@ public class A {
         return jumlahAkumulatif;
     }
 
+    /**
+     * 
+     * @param arr
+     * @return
+     */
     public static double median(double arr[])
     {
         int mid = (arr.length) / 2;
@@ -49,6 +60,12 @@ public class A {
         return med;
     }
 
+    /**
+     * 
+     * @param arr
+     * @param mean
+     * @return
+     */
     public static double simpanganBaku(double arr[], double mean) 
     {
         double res = 0;
@@ -61,6 +78,12 @@ public class A {
         return Math.sqrt(res);
     }
 
+    /**
+     * 
+     * @param validitas
+     * @param arr
+     * @return
+     */
     public static double[] operasiValiditasMaxMin (double[]validitas,double []arr){
         double validitasAkumulatif = 0;
         double maximumNilai = 0;
@@ -79,10 +102,27 @@ public class A {
         validitas[0]= validitasAkumulatif;
         validitas[1] = maximumNilai;
         validitas[2]= minimumNilai;
+
         return validitas;
-      
     }
+
+    /**
+     * 
+     * @param arr
+     * @return
+     */
+    public static double[] quartileArr(double arr[])
+    {
+        double q[] = new double[3];
+        q[0] = arr[((arr.length + 1) / 4) - 1];
+        q[1] = arr[((arr.length + 1) / 2) - 1];
+        q[2] = arr[(((arr.length + 1) * 3) / 4) - 1];
+
+        return q;
+    }
+    
     public static void main(String[] args) {
+        // Input data
         Scanner sc = new Scanner(System.in); // Import scanner
         double arr[] = new double[24]; // Array untuk menyimpan nilai-nilai datanya
         // Looping untuk memasukkan setiap data ke dalam array
@@ -98,6 +138,7 @@ public class A {
         ValiditasMaxMin = operasiValiditasMaxMin(ValiditasMaxMin,arr); // jujur aku malas buat metode buat satu satu 
         double median = median(arr);
         double simpanganBaku = simpanganBaku(arr, mean);
+        double quartile[] = quartileArr(arr);
 
         // Output akhir
         System.out.printf("Jumlah data valid: %d%n", (int)ValiditasMaxMin[0]);
@@ -105,6 +146,8 @@ public class A {
         System.out.printf("Median: %.2f%n", median);
         System.out.printf("s: %.2f%n", simpanganBaku);
         System.out.printf("Min: %.2f%n", ValiditasMaxMin[2]);
+        System.out.printf("Q1: %.2f%n", quartile[0]);
+        System.out.printf("Q3: %.2f%n", quartile[2]);
         System.out.printf("Max: %.2f%n", ValiditasMaxMin[1]);
 
         sc.close(); // Menutup scanner;
